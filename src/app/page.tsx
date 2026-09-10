@@ -8,12 +8,22 @@ import {
   Star,
   CheckCircle2,
   Quote,
-  Layers
+  Layers,
+  Sparkles,
+  Zap,
+  ShieldCheck,
+  TrendingUp
 } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
 import ProjectCard from "@/components/ProjectCard";
 import LogoRail from "@/components/LogoRail";
 import FaqAccordion from "@/components/FaqAccordion";
+import ProblemSolutionSection from "@/components/ProblemSolutionSection";
+import TechArsenalSection from "@/components/TechArsenalSection";
+import ProcessTimeline from "@/components/ProcessTimeline";
+import MeetTheTeamSection from "@/components/MeetTheTeamSection";
+import ProjectLeadForm from "@/components/ProjectLeadForm";
+
 import { projectsData } from "@/data/projects";
 import { servicesData } from "@/data/services";
 import { faqsData } from "@/data/faqs";
@@ -40,10 +50,44 @@ const testimonials = [
 ];
 
 const metrics = [
-  { value: "99.8%", label: "On-Time Delivery" },
-  { value: "4.9/5", label: "Client Satisfaction" },
+  { value: "99.8%", label: "On-Time Delivery Rate" },
+  { value: "4.9/5", label: "Client Satisfaction Rating" },
   { value: "10M+", label: "Daily Active End-Users" },
-  { value: "<300ms", label: "Avg API Response Time" },
+  { value: "<300ms", label: "Avg API Response Speed" },
+];
+
+const agencyMilestones = [
+  { value: "50+", label: "Digital Products Shipped", desc: "High-performing websites, SaaS apps & custom software." },
+  { value: "99.8%", label: "On-Time Sprint Record", desc: "Punctual delivery with zero compromise on code quality." },
+  { value: "15+", label: "Global Tech Hubs", desc: "Clients across USA, UK, Europe, and Asia Pacific." },
+  { value: "2.4x", label: "Avg Conversion Growth", desc: "Measured conversion surge post ARTISAN redesign." },
+];
+
+const whyUsPillars = [
+  {
+    number: "01",
+    title: "Strategy First",
+    description: "We thoroughly analyze your business model, competitive landscape, and user goals before writing a single line of code.",
+    icon: Sparkles
+  },
+  {
+    number: "02",
+    title: "Design + Dev Synergy",
+    description: "Designers and full-stack software engineers work side-by-side to deliver 60fps micro-animations and ultra-responsive layouts.",
+    icon: Zap
+  },
+  {
+    number: "03",
+    title: "Scalable Architecture",
+    description: "Built on modern cloud-native frameworks (Next.js 15, Node, Cloud Edge) designed for zero technical debt and effortless scaling.",
+    icon: ShieldCheck
+  },
+  {
+    number: "04",
+    title: "Long-Term Partnership",
+    description: "We don't disappear after launch. We provide ongoing engineering maintenance, performance optimization, and strategic upgrades.",
+    icon: TrendingUp
+  }
 ];
 
 export default function HomePage() {
@@ -51,12 +95,14 @@ export default function HomePage() {
 
   return (
     <div className="relative overflow-hidden bg-[#050505] text-[#F5F5F5]">
-      {/* Subtle Background Grid & Light Orbs */}
+      {/* Ambient Background Grid & Glow Orbs */}
       <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
       <div className="glow-orb-indigo top-10 -left-20 opacity-50" />
       <div className="glow-orb-cyan top-80 right-0 opacity-30" />
 
-      {/* SECTION 1 — HERO */}
+      {/* ========================================================================= */}
+      {/* 1. HERO SECTION */}
+      {/* ========================================================================= */}
       <section className="relative min-h-[92vh] flex flex-col justify-center max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-16 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
@@ -75,7 +121,7 @@ export default function HomePage() {
               </span>
             </motion.div>
 
-            {/* Editorial Serif Accent Headline */}
+            {/* Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -89,14 +135,14 @@ export default function HomePage() {
               Out.
             </motion.h1>
 
-            {/* High Contrast Subtext */}
+            {/* Subtext */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-lg md:text-xl text-[#9A9A9A] font-light max-w-2xl leading-relaxed"
             >
-              We craft high-converting web applications, scalable SaaS architectures, and custom digital experiences designed to elevate ambitious brands.
+              We design and engineer high-performance websites, scalable web applications, SaaS platforms, and custom software built to elevate ambitious digital brands.
             </motion.p>
 
             {/* Hero CTAs */}
@@ -114,12 +160,12 @@ export default function HomePage() {
 
               <Link href="/work">
                 <MagneticButton variant="outline">
-                  View Our Portfolio
+                  Explore Our Work
                 </MagneticButton>
               </Link>
             </motion.div>
 
-            {/* Proof Rating Pill */}
+            {/* Rating Pill */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -155,7 +201,7 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {/* Right Floating Glass Metrics Cluster */}
+          {/* Right Metrics Grid */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -177,14 +223,22 @@ export default function HomePage() {
               </div>
             ))}
           </motion.div>
-
         </div>
       </section>
 
-      {/* SECTION 2 — COLLABORATION LOGO RAIL */}
+      {/* ========================================================================= */}
+      {/* 2. TRUST / CLIENT LOGOS */}
+      {/* ========================================================================= */}
       <LogoRail />
 
-      {/* SECTION 3 — CORE OFFER & CAPABILITIES */}
+      {/* ========================================================================= */}
+      {/* 3. PROBLEM → SOLUTION */}
+      {/* ========================================================================= */}
+      <ProblemSolutionSection />
+
+      {/* ========================================================================= */}
+      {/* 4. CORE SERVICES */}
+      {/* ========================================================================= */}
       <section className="py-24 max-w-7xl mx-auto px-6 md:px-12 relative">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span className="text-xs font-mono text-[#00E5FF] tracking-widest uppercase">
@@ -194,7 +248,7 @@ export default function HomePage() {
             Engineered for <span className="font-serif italic text-gradient-accent">Scale & Speed</span>
           </h2>
           <p className="text-[#9A9A9A] text-base leading-relaxed">
-            From modern web design to cloud-native software architecture, we deliver complete digital product solutions under one roof.
+            From luxury web design to cloud-native SaaS engineering, we deliver complete digital product solutions under one roof.
           </p>
         </div>
 
@@ -206,28 +260,31 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className="glass-card p-8 rounded-3xl relative overflow-hidden group hover:border-[#6C63FF]/50 transition-all duration-300"
+              className="glass-card p-8 rounded-3xl relative overflow-hidden group hover:border-[#6C63FF]/50 transition-all duration-300 flex flex-col justify-between"
             >
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#6C63FF]/20 to-[#00E5FF]/20 border border-[rgba(255,255,255,0.1)] flex items-center justify-center mb-6 text-[#00E5FF] group-hover:scale-110 transition-transform">
-                <Layers className="w-6 h-6" />
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#6C63FF]/20 to-[#00E5FF]/20 border border-[rgba(255,255,255,0.1)] flex items-center justify-center mb-6 text-[#00E5FF] group-hover:scale-110 transition-transform">
+                  <Layers className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#00E5FF] transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-[#9A9A9A] leading-relaxed mb-6">
+                  {service.description}
+                </p>
+                <ul className="space-y-2 mb-8">
+                  {service.capabilities.slice(0, 3).map((item, i) => (
+                    <li key={i} className="text-xs text-[#D1D5DB] flex items-center gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#00E5FF] shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#00E5FF] transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-sm text-[#9A9A9A] leading-relaxed mb-6">
-                {service.description}
-              </p>
-              <ul className="space-y-2 mb-8">
-                {service.capabilities.slice(0, 3).map((item, i) => (
-                  <li key={i} className="text-xs text-[#D1D5DB] flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#00E5FF] shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+
               <Link
                 href="/services"
-                className="text-xs font-mono uppercase tracking-wider text-white group-hover:text-[#00E5FF] inline-flex items-center gap-1 transition-colors"
+                className="text-xs font-mono uppercase tracking-wider text-white group-hover:text-[#00E5FF] inline-flex items-center gap-1 transition-colors pt-4 border-t border-[rgba(255,255,255,0.06)]"
               >
                 Learn More <ChevronRight className="w-3.5 h-3.5" />
               </Link>
@@ -236,16 +293,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 4 — FEATURED WORK & PROOF */}
-      <section className="py-24 bg-[#08080c] border-y border-[rgba(255,255,255,0.06)] relative">
+      {/* ========================================================================= */}
+      {/* 5. TECH STACK / ARSENAL */}
+      {/* ========================================================================= */}
+      <TechArsenalSection />
+
+      {/* ========================================================================= */}
+      {/* 6. FEATURED WORK */}
+      {/* ========================================================================= */}
+      <section className="py-24 bg-[#08080c] border-b border-[rgba(255,255,255,0.06)] relative">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
               <span className="text-xs font-mono text-[#00E5FF] tracking-widest uppercase">
-                {"/// SELECTED CASE STUDIES"}
+                {"/// FEATURED WORK"}
               </span>
               <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mt-2">
-                Proven <span className="font-serif italic text-gradient-accent">Commercial Impact</span>
+                Selected <span className="font-serif italic text-gradient-accent">Digital Products</span>
               </h2>
             </div>
             <Link href="/work">
@@ -263,17 +327,148 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 5 — TESTIMONIALS */}
+      {/* ========================================================================= */}
+      {/* 7. CASE STUDIES / RESULTS */}
+      {/* ========================================================================= */}
+      <section className="py-24 max-w-7xl mx-auto px-6 md:px-12 relative">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span className="text-xs font-mono text-[#00E5FF] tracking-widest uppercase">
+            {"/// MEASURED RESULTS"}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+            Commercial Impact & <span className="font-serif italic text-gradient-accent">Case Studies</span>
+          </h2>
+          <p className="text-[#9A9A9A] text-base leading-relaxed">
+            We measure success not just in clean code and aesthetic design, but in real business outcomes and revenue acceleration.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="glass-card p-8 rounded-3xl border border-[#6C63FF]/30 space-y-4">
+            <div className="text-5xl font-extrabold font-mono text-gradient-accent">+44%</div>
+            <h4 className="text-xl font-bold text-white">SaaS User Retention</h4>
+            <p className="text-xs text-[#9A9A9A] leading-relaxed">
+              Refactored Nexus Systems legacy portal into a zero-latency Next.js web application with intuitive workflow UX.
+            </p>
+            <div className="pt-2 text-[11px] font-mono text-[#00E5FF] uppercase">
+              Client: Nexus Systems • SaaS Platform
+            </div>
+          </div>
+
+          <div className="glass-card p-8 rounded-3xl border border-[#00E5FF]/30 space-y-4">
+            <div className="text-5xl font-extrabold font-mono text-[#00E5FF]">2.4x</div>
+            <h4 className="text-xl font-bold text-white">Conversion Surge</h4>
+            <p className="text-xs text-[#9A9A9A] leading-relaxed">
+              Designed a high-converting digital branding experience for Horizon Capital, doubling lead generation in 90 days.
+            </p>
+            <div className="pt-2 text-[11px] font-mono text-[#00E5FF] uppercase">
+              Client: Horizon Capital • Fintech Portal
+            </div>
+          </div>
+
+          <div className="glass-card p-8 rounded-3xl border border-[#6C63FF]/30 space-y-4">
+            <div className="text-5xl font-extrabold font-mono text-gradient-accent">-60%</div>
+            <h4 className="text-xl font-bold text-white">Manual Processing</h4>
+            <p className="text-xs text-[#9A9A9A] leading-relaxed">
+              Built automated custom internal software tools & REST APIs that reduced operational manual processing time by over half.
+            </p>
+            <div className="pt-2 text-[11px] font-mono text-[#00E5FF] uppercase">
+              Client: Vanguard AI • Enterprise Workflow
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 8. DEVELOPMENT PROCESS */}
+      {/* ========================================================================= */}
+      <section className="py-28 bg-[#08080c] border-y border-[rgba(255,255,255,0.06)] relative">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="text-xs font-mono text-[#00E5FF] tracking-widest uppercase">
+              {"/// HOW WE WORK"}
+            </span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+              Our Development <span className="font-serif italic text-gradient-accent">Process</span>
+            </h2>
+            <p className="text-[#9A9A9A] text-base leading-relaxed">
+              A transparent, battle-tested 7-step engineering roadmap from initial scope definition to post-launch scaling.
+            </p>
+          </div>
+          <ProcessTimeline />
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 9. WHY CHOOSE US */}
+      {/* ========================================================================= */}
       <section className="py-28 max-w-7xl mx-auto px-6 md:px-12 relative">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span className="text-xs font-mono text-[#00E5FF] tracking-widest uppercase">
-            {"/// CLIENT FEEDBACK"}
+            {"/// BUILT DIFFERENT"}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+            Why Choose <span className="font-serif italic text-gradient-accent">ARTISAN.DEV</span>
+          </h2>
+          <p className="text-[#9A9A9A] text-base leading-relaxed">
+            We combine high-end aesthetic taste with strict software engineering discipline to deliver exceptional digital products.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {whyUsPillars.map((pillar, idx) => {
+            const Icon = pillar.icon;
+            return (
+              <motion.div
+                key={pillar.number}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="glass-card p-8 rounded-3xl relative border border-[rgba(255,255,255,0.08)] hover:border-[#6C63FF]/50 transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-2xl font-extrabold font-mono text-[#00E5FF]">
+                      {pillar.number}
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-[#121218] border border-[rgba(255,255,255,0.1)] flex items-center justify-center text-[#6C63FF]">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-xs text-[#9A9A9A] leading-relaxed">
+                    {pillar.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 10. MEET THE TEAM */}
+      {/* ========================================================================= */}
+      <section className="bg-[#08080c] border-y border-[rgba(255,255,255,0.06)]">
+        <MeetTheTeamSection />
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 11. CLIENT TESTIMONIALS */}
+      {/* ========================================================================= */}
+      <section className="py-28 max-w-7xl mx-auto px-6 md:px-12 relative">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span className="text-xs font-mono text-[#00E5FF] tracking-widest uppercase">
+            {"/// CLIENT TESTIMONIALS"}
           </span>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
             Trusted by <span className="font-serif italic text-gradient-accent">Product Leaders</span>
           </h2>
           <p className="text-[#9A9A9A] text-base">
-            Here is what engineering VPs, startup founders, and design leads say about working with ARTISAN.
+            Here is what engineering VPs, startup founders, and design directors say about working with ARTISAN.
           </p>
         </div>
 
@@ -310,36 +505,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 6 — FAQ ACCORDION */}
-      <section className="py-24 bg-[#08080c] border-t border-[rgba(255,255,255,0.06)]">
-        <div className="max-w-4xl mx-auto px-6 md:px-12">
-          <div className="text-center mb-16 space-y-4">
-            <span className="text-xs font-mono text-[#00E5FF] tracking-widest uppercase">
-              {"/// COMMON QUESTIONS"}
-            </span>
-            <h2 className="text-4xl font-extrabold text-white tracking-tight">
-              Frequently Asked <span className="font-serif italic text-gradient-accent">Questions</span>
-            </h2>
+      {/* ========================================================================= */}
+      {/* 12. AGENCY STATS & MILESTONES */}
+      {/* ========================================================================= */}
+      <section className="py-24 bg-[#08080c] border-y border-[rgba(255,255,255,0.06)] relative">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {agencyMilestones.map((m, idx) => (
+              <motion.div
+                key={m.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="glass-card p-8 rounded-3xl border border-[rgba(255,255,255,0.08)] space-y-3"
+              >
+                <div className="text-4xl md:text-5xl font-extrabold font-mono text-gradient-accent">
+                  {m.value}
+                </div>
+                <h4 className="text-lg font-bold text-white tracking-tight">
+                  {m.label}
+                </h4>
+                <p className="text-xs text-[#9A9A9A] leading-relaxed">
+                  {m.desc}
+                </p>
+              </motion.div>
+            ))}
           </div>
-          <FaqAccordion items={faqsData} />
         </div>
       </section>
 
-      {/* SECTION 7 — FINAL CTA */}
-      <section className="py-28 relative overflow-hidden bg-gradient-to-b from-[#050505] to-[#0a0a12]">
+      {/* ========================================================================= */}
+      {/* 13. FAQ ACCORDION */}
+      {/* ========================================================================= */}
+      <section className="py-28 max-w-4xl mx-auto px-6 md:px-12 relative">
+        <div className="text-center mb-16 space-y-4">
+          <span className="text-xs font-mono text-[#00E5FF] tracking-widest uppercase">
+            {"/// FREQUENT QUESTIONS"}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+            Frequently Asked <span className="font-serif italic text-gradient-accent">Questions</span>
+          </h2>
+          <p className="text-[#9A9A9A] text-base">
+            Everything you need to know about starting a digital product or software engagement with us.
+          </p>
+        </div>
+        <FaqAccordion items={faqsData} />
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 14. PROJECT BRIEF / LEAD FORM */}
+      {/* ========================================================================= */}
+      <ProjectLeadForm />
+
+      {/* ========================================================================= */}
+      {/* 15. FINAL CTA */}
+      {/* ========================================================================= */}
+      <section className="py-32 relative overflow-hidden bg-gradient-to-b from-[#050505] to-[#0a0a12]">
         <div className="glow-orb-indigo top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40" />
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10 space-y-8">
           <span className="text-xs font-mono text-[#00E5FF] tracking-widest uppercase">
             {"/// READY TO BUILD?"}
           </span>
           <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-tight">
-            Let&apos;s Create Your Next <br />
-            <span className="font-serif italic font-normal text-gradient-accent">Digital Masterpiece</span>
+            Have an Idea? <br />
+            <span className="font-serif italic font-normal text-gradient-accent">Let&apos;s Build It.</span>
           </h2>
           <p className="text-lg text-[#9A9A9A] max-w-xl mx-auto leading-relaxed">
-            Have a project in mind or need expert web development & software engineering? Let&apos;s make it happen.
+            Partner with a studio that delivers commercial-grade software engineering, luxury visual polish, and high-impact digital experiences.
           </p>
-          <div className="pt-4 flex justify-center">
+          <div className="pt-4 flex justify-center gap-4 flex-wrap">
             <Link href="/contact">
               <MagneticButton variant="primary">
                 Schedule a Call <ArrowUpRight className="w-5 h-5 ml-1" />
