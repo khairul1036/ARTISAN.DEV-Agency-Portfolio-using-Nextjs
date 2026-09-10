@@ -55,7 +55,7 @@ export default function CustomCursor() {
         animate={{
           x: position.x - 6,
           y: position.y - 6,
-          scale: isHovered ? 2.5 : 1,
+          scale: 1,
         }}
         transition={{ type: "spring", stiffness: 800, damping: 35, mass: 0.1 }}
       />
